@@ -27,16 +27,24 @@ namespace P5
 
                 projects.Add(new Project
                 {
-                    id = 1,
-                    Name = "Internship Project"
+                    Id = 1,
+                    Name = "Accounting project"
 
                 }) ;
 
                 projects.Add(new Project
                 {
 
-                    id=2,
-                    Name = "Software Eng P5"
+                    Id=2,
+                    Name = "Big expensive project"
+
+                });
+
+                projects.Add(new Project
+                {
+
+                    Id = 3,
+                    Name = "Some other project"
 
                 });
 
@@ -73,10 +81,7 @@ namespace P5
 
             public List<Project> GetAll()
             {
-
-                List<Project> projcts = new List<Project>();
-
-                return projcts;
+                return projects;
             }
 
             public bool IsDuplicateName(string projectName)

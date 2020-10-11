@@ -93,6 +93,10 @@
       <Project>{9fdb4c1a-5099-4215-9c15-2607b888725c}</Project>
       <Name>P3_Code</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P5\P5.csproj">
+      <Project>{f645d12e-dfcf-4319-a926-52e891525da0}</Project>
+      <Name>P5</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

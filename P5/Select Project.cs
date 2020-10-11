@@ -10,39 +10,46 @@ using System.Windows.Forms;
 
 namespace P5
 {
-    public partial class selProject : Form
+    public partial class SelProject : Form
     {
-        public selProject()
+        public FakeProjectRepository NewRepository = new FakeProjectRepository();
+        public Project SelectedProject;
+        public List<Project> projects = new List<Project>();
+        public bool isSelected = false;
+        public SelProject()
         {
             InitializeComponent();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void expnProject_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void otherPrj_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AccProject_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cncl_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void selPrjt_Click(object sender, EventArgs e)
+        {
+            SelectedProject = projects[ProjectOptions.SelectedIndex];
+            isSelected = true;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void SelProject_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+            projects = NewRepository.GetAll();
+            foreach (Project project in projects)
+            {
+                ProjectOptions.Items.Add(project.Id.ToString() + " - " + project.Name);
+            }
+            ProjectOptions.SelectedIndex = 0;
+        }
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ProjectOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

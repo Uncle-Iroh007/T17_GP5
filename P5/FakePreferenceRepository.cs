@@ -9,26 +9,23 @@ namespace P5
 {
     public class FakePreferenceRepository : IPreferenceRepository
     {
-        public const string PREFERENCE_PROJECT_ID = "1";
-
-        private static Dictionary<string, string> innderDict;
+        public const string PREFERENCE_PROJECT_ID = "Project_Id";
+        public const string PREFRENCE_PROJECT_NAME = "Project_Name";
+        private const string NO_ERROR = "";
+        
+        //Not sure why this is here, commenting it out for now.
+        //private static Dictionary<string, string> innderDict;
         private static Dictionary<string, Dictionary<string, string>> Preferences;
 
+       
         public FakePreferenceRepository()
         {
-
             if (Preferences == null)
             {
-                innderDict = new Dictionary<string, string>();
-                innderDict.Add("Background", "red");
                 Preferences = new Dictionary<string, Dictionary<string, string>>();
-                Preferences.Add("Naluca", innderDict);
-
-                innderDict.Add("Foreground", "Black");
-                Preferences.Add("Naluca", innderDict);
             }
         }
-
+  
         public string GetPreference(string UserName, string PreferenceName)
         {
             string a = string.Empty;
@@ -36,9 +33,9 @@ namespace P5
         }
         public string SetPreference(string UserName, string PreferenceName, string Value)
         {
-            string a = string.Empty;
-            return a;
-
+            Preferences.Add(UserName, new Dictionary<string, string>());
+            Preferences[UserName].Add(PreferenceName, Value);
+            return NO_ERROR;
         }
 
     }

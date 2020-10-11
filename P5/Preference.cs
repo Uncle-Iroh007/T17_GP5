@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    class Preference
+    public class Preference
     {
 
         public string UserName;

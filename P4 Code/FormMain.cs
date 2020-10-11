@@ -1,4 +1,5 @@
 ﻿using P3_Code;
+using P5;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,12 @@ namespace P4_Code
 {
     public partial class mainForm : Form
     {
+        Login formLogin = new Login();
+        AppUser user = new AppUser();
+        SelProject selectProject = new SelProject();
+        Project project = new Project();
+        FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
+        FakeProjectRepository projectRepository = new FakeProjectRepository();
         public mainForm()
         {
             InitializeComponent();
@@ -21,8 +28,6 @@ namespace P4_Code
         private void mainForm_Load(object sender, EventArgs e)
         {
             CenterToScreen();
-            Login formLogin = new Login();
-            AppUser user = new AppUser();
             user.IsAuthenticated = false;
 
             while (user.IsAuthenticated == false && formLogin.ShowDialog(this) == DialogResult.OK)
@@ -36,7 +41,14 @@ namespace P4_Code
             }
             else
             {
-                Text = "Main - No Project Selected";
+                while (selectProject.isSelected == false && selectProject.ShowDialog(this) == DialogResult.OK)
+                {
+                    projectRepository = selectProject.NewRepository;
+                    project = selectProject.SelectedProject;
+                    preferenceRepository.SetPreference(user.UserName, project.Name, project.Id.ToString());
+                }
+                Text += " - " + project.Name;
+
             }
         }
 

@@ -8,7 +8,7 @@ namespace P5
 {
     public class Project
     {
-        public int id;
+        public int Id;
         public string Name;
     }
 }
