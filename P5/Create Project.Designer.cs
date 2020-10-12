@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameInput = new System.Windows.Forms.TextBox();
             this.cancelAdd = new System.Windows.Forms.Button();
             this.addPrj = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -42,12 +42,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Project Name :";
             // 
-            // textBox1
+            // nameInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(183, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(292, 22);
-            this.textBox1.TabIndex = 1;
+            this.nameInput.Location = new System.Drawing.Point(183, 54);
+            this.nameInput.Name = "nameInput";
+            this.nameInput.Size = new System.Drawing.Size(292, 22);
+            this.nameInput.TabIndex = 1;
             // 
             // cancelAdd
             // 
@@ -78,10 +78,11 @@
             this.ClientSize = new System.Drawing.Size(684, 189);
             this.Controls.Add(this.addPrj);
             this.Controls.Add(this.cancelAdd);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nameInput);
             this.Controls.Add(this.label1);
             this.Name = "Create_Project";
-            this.Text = "Create_Project";
+            this.Text = "Create Project";
+            this.Load += new System.EventHandler(this.Create_Project_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,7 +91,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameInput;
         private System.Windows.Forms.Button cancelAdd;
         private System.Windows.Forms.Button addPrj;
     }

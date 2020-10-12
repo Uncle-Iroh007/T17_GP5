@@ -19,7 +19,7 @@ namespace P5
 
         private void Modify_Project_Load(object sender, EventArgs e)
         {
-
+            CenterToScreen();
         }
 
         private void mdfy_Click(object sender, EventArgs e)

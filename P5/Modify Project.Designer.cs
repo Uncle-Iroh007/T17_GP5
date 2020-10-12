@@ -80,7 +80,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.modPName);
             this.Name = "Modify_Project";
-            this.Text = "Modify_Project";
+            this.Text = "Modify Project";
             this.Load += new System.EventHandler(this.Modify_Project_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -12,11 +12,8 @@ namespace P5
         public const string PREFERENCE_PROJECT_ID = "Project_Id";
         public const string PREFRENCE_PROJECT_NAME = "Project_Name";
         private const string NO_ERROR = "";
-        
-        //Not sure why this is here, commenting it out for now.
-        //private static Dictionary<string, string> innderDict;
-        private static Dictionary<string, Dictionary<string, string>> Preferences;
 
+        private static Dictionary<string, Dictionary<string, string>> Preferences;
        
         public FakePreferenceRepository()
         {
@@ -26,15 +23,27 @@ namespace P5
             }
         }
   
+        //Gets preference of UserName, at key of PreferenceName
         public string GetPreference(string UserName, string PreferenceName)
         {
-            string a = string.Empty;
-            return a;
+            if (!Preferences.ContainsKey(UserName) || !Preferences[UserName].ContainsKey(PreferenceName))
+                return null;
+            else
+            {
+                Dictionary <string,string> userDictionary = Preferences[UserName];
+                return userDictionary[PreferenceName];
+            }
         }
+        //Adds a new preference to a user's key
         public string SetPreference(string UserName, string PreferenceName, string Value)
         {
-            Preferences.Add(UserName, new Dictionary<string, string>());
-            Preferences[UserName].Add(PreferenceName, Value);
+            //If the user key does not exist, create
+            if(!Preferences.ContainsKey(UserName))
+                Preferences.Add(UserName, new Dictionary<string, string>());
+            //If the preference is not already a key for the user, add
+            if (!Preferences[UserName].ContainsKey(PreferenceName))
+                Preferences[UserName].Add(PreferenceName, Value);
+
             return NO_ERROR;
         }
 

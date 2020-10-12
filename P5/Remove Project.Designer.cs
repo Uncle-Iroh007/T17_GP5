@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.rmv = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.cnclRmv = new System.Windows.Forms.Button();
             this.rmvPrj = new System.Windows.Forms.Button();
+            this.removeName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rmv
@@ -42,13 +42,6 @@
             this.rmv.Size = new System.Drawing.Size(101, 17);
             this.rmv.TabIndex = 0;
             this.rmv.Text = "Project Name :";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(196, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(399, 22);
-            this.textBox1.TabIndex = 1;
             // 
             // cnclRmv
             // 
@@ -70,17 +63,27 @@
             this.rmvPrj.UseVisualStyleBackColor = true;
             this.rmvPrj.Click += new System.EventHandler(this.rmvPrj_Click);
             // 
+            // removeName
+            // 
+            this.removeName.AutoSize = true;
+            this.removeName.Location = new System.Drawing.Point(177, 51);
+            this.removeName.Name = "removeName";
+            this.removeName.Size = new System.Drawing.Size(119, 17);
+            this.removeName.TabIndex = 4;
+            this.removeName.Text = "Project to remove";
+            // 
             // Remove_Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 185);
+            this.Controls.Add(this.removeName);
             this.Controls.Add(this.rmvPrj);
             this.Controls.Add(this.cnclRmv);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.rmv);
             this.Name = "Remove_Project";
-            this.Text = "Remove_Project";
+            this.Text = "Remove Project";
+            this.Load += new System.EventHandler(this.Remove_Project_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,8 +92,8 @@
         #endregion
 
         private System.Windows.Forms.Label rmv;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button cnclRmv;
         private System.Windows.Forms.Button rmvPrj;
+        private System.Windows.Forms.Label removeName;
     }
 }

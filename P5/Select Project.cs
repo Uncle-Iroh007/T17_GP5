@@ -28,6 +28,7 @@ namespace P5
 
         private void selPrjt_Click(object sender, EventArgs e)
         {
+            //Selected project set to project in list where selected
             SelectedProject = projects[ProjectOptions.SelectedIndex];
             isSelected = true;
             this.DialogResult = DialogResult.OK;
@@ -37,7 +38,9 @@ namespace P5
         private void SelProject_Load(object sender, EventArgs e)
         {
             CenterToScreen();
+            //Gets all projects in newRepository
             projects = NewRepository.GetAll();
+            //Load each item into select screen
             foreach (Project project in projects)
             {
                 ProjectOptions.Items.Add(project.Id.ToString() + " - " + project.Name);

@@ -8,7 +8,7 @@ namespace P5
 {
     public interface IProjectRepository
     {
-        string Add(Project project);
+        string Add(Project project, out int Id);
         string Remove(int projectId);
 
         string Modify(int projectID, Project project);

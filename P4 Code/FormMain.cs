@@ -14,10 +14,8 @@ namespace P4_Code
 {
     public partial class mainForm : Form
     {
-        Login formLogin = new Login();
         AppUser user = new AppUser();
-        SelProject selectProject = new SelProject();
-        Project project = new Project();
+        Project currentProject = new Project();
         FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
         FakeProjectRepository projectRepository = new FakeProjectRepository();
         public mainForm()
@@ -29,7 +27,8 @@ namespace P4_Code
         {
             CenterToScreen();
             user.IsAuthenticated = false;
-
+            Login formLogin = new Login();
+            SelProject selectProject = new SelProject();
             while (user.IsAuthenticated == false && formLogin.ShowDialog(this) == DialogResult.OK)
             {
                 user = formLogin.LoginUser;
@@ -41,35 +40,79 @@ namespace P4_Code
             }
             else
             {
+                //Select project when opening program for the first time.
+                //Current project set to selected project, and slected project added to preferences
                 while (selectProject.isSelected == false && selectProject.ShowDialog(this) == DialogResult.OK)
                 {
                     projectRepository = selectProject.NewRepository;
-                    project = selectProject.SelectedProject;
-                    preferenceRepository.SetPreference(user.UserName, project.Name, project.Id.ToString());
+                    currentProject = selectProject.SelectedProject;
+                    preferenceRepository.SetPreference(user.UserName, currentProject.Name, currentProject.Id.ToString());
                 }
-                Text += " - " + project.Name;
+                if (selectProject.DialogResult != DialogResult.OK)
+                {
+                    Close();
+                }
+
+                //Update form title to include project name
+                Text += " - " + currentProject.Name;
 
             }
         }
 
         private void sel_project_Click(object sender, EventArgs e)
         {
-
+            //Select a project after initial project.
+            //currentProject and preferenceRepository based on selected projects
+            SelProject selectProject = new SelProject();
+            while (selectProject.isSelected == false && selectProject.ShowDialog(this) == DialogResult.OK)
+            {
+                projectRepository = selectProject.NewRepository;
+                currentProject = selectProject.SelectedProject;
+                preferenceRepository.SetPreference(user.UserName, currentProject.Name, currentProject.Id.ToString());
+            }
+            //Updating title
+            Text =  "Main - " + currentProject.Name;
         }
 
         private void crt_project_Click(object sender, EventArgs e)
         {
-
+            //Opens create window; repository updated to contain created item.
+            Create_Project createProject = new Create_Project(projectRepository);
+            while (createProject.isCreated == false && createProject.ShowDialog(this) == DialogResult.OK)
+            {
+                projectRepository = createProject.ProjectRepository;
+            }
         }
 
         private void mdfy_project_Click(object sender, EventArgs e)
         {
-
+            //cyber cyber cyber cyber hexagon
         }
 
         private void rmv_project_Click(object sender, EventArgs e)
         {
+            //Select a project to be removed from project repo
+            Project projectToRemove = new Project();
+            SelProject selectProject = new SelProject();
+            while (selectProject.isSelected == false && selectProject.ShowDialog(this) == DialogResult.OK)
+            {
+                projectRepository = selectProject.NewRepository;
+                projectToRemove = selectProject.SelectedProject;
+            }
 
+            if (selectProject.DialogResult != DialogResult.OK)
+            {
+                Close();
+            }
+            //Open remove project window, where user confirms project to remove.
+            else
+            {
+                Remove_Project removeProject = new Remove_Project(projectRepository, currentProject, projectToRemove);
+                while (removeProject.isRemoved == false && removeProject.ShowDialog(this) == DialogResult.OK)
+                {
+                    projectRepository = removeProject.ProjectRepository;
+                }
+            }
         }
     }
 }

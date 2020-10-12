@@ -12,10 +12,10 @@ namespace P5
 
        
         public const string NO_ERROR="";
-        public const string MODIFIED_PROJECT_ID_ERROR = "ERROR! Project ID Modified.";
-        public const string DUPLPICATE_PROJECT_NAME_ERROR = "ERROR! Project Name Already Exists.";
-        public const string NO_PROJECT_FOUND_ERROR = "ERROR! Project Not Found.";
-        public const string EMPTY_PROJECT_NAME_ERROR = "ERROR! Project Name Cannot be Empty.";
+        public const string MODIFIED_PROJECT_ID_ERROR = "Cannot modify your current session project.";
+        public const string DUPLPICATE_PROJECT_NAME_ERROR = "Project name already exists.";
+        public const string NO_PROJECT_FOUND_ERROR = "No project found.";
+        public const string EMPTY_PROJECT_NAME_ERROR = "Project name is empty or blank.";
 
         private static List<Project> projects;
 
@@ -52,47 +52,91 @@ namespace P5
 
 
         }
-            public int GetNextId()
+        public int GetNextId()
+        {
+            //Finds maximum current idea and returns max + 1 for next Id
+            int currentMax = 0;
+            foreach(Project project in projects)
             {
-                int a = 0;
-                return a;
+                if (project.Id > currentMax)
+                currentMax = project.Id;
             }
+            return currentMax + 1;
+        }
 
-
-
-            public string Add(Project project) {
-
-                string a = string.Empty;
-                return a;
-            }
-            public string Remove(int projectId)
+        public string Add(Project project, out int Id)
+        {
+            //Check for empty project name
+            if (project.Name == "")
             {
-
-                string a = string.Empty;
-                return a;
+                Id = -1;
+                return EMPTY_PROJECT_NAME_ERROR;
             }
 
-            public string Modify(int projectID, Project project)
+            //Check for duplicate projects
+            if (IsDuplicateName(project.Name))
             {
-                string a = string.Empty;
-                return a;
-
+                Id = -1;
+                return DUPLPICATE_PROJECT_NAME_ERROR;
             }
 
-            public List<Project> GetAll()
+            //Set Id of project
+            project.Id = GetNextId();
+
+            //Add project
+            projects.Add(project);
+
+            Id = project.Id;
+            return NO_ERROR;
+        }
+
+        public string Remove(int projectId)
+        {
+            bool exists = false;
+            Project projectToRemove = new Project();
+            //Select project by id; set exists flag to true
+            foreach (Project existingProject in projects)
             {
-                return projects;
+                if(existingProject.Id == projectId)
+                {
+                    exists = true;
+                    projectToRemove = existingProject;
+                }
             }
+            //Return does not exist if cannot be found
+            if (!exists)
+                return NO_PROJECT_FOUND_ERROR;
 
-            public bool IsDuplicateName(string projectName)
+            //Remove from list, return no error
+            projects.Remove(projectToRemove);
+            return NO_ERROR;
+        }
+
+        public string Modify(int projectID, Project project)
+        {
+            string a = string.Empty;
+            return a;
+
+        }
+
+        public List<Project> GetAll()
+        {
+            //returns list of projects in repository
+            return projects;
+        }
+
+        public bool IsDuplicateName(string projectName)
+        {
+            //Checks if project with same name alread exists
+            foreach (Project existingProject in projects)
             {
-
-                bool a = true;
-                return a;
+                if (projectName == existingProject.Name)
+                {
+                    return true;
+                }
             }
-
-
-        
+            return false;
+        }      
 
     }
 }
