@@ -37,24 +37,27 @@
             // modPName
             // 
             this.modPName.AutoSize = true;
-            this.modPName.Location = new System.Drawing.Point(52, 58);
+            this.modPName.Location = new System.Drawing.Point(104, 112);
+            this.modPName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.modPName.Name = "modPName";
-            this.modPName.Size = new System.Drawing.Size(101, 17);
+            this.modPName.Size = new System.Drawing.Size(201, 32);
             this.modPName.TabIndex = 0;
             this.modPName.Text = "Project Name :";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 53);
+            this.textBox1.Location = new System.Drawing.Point(344, 103);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(362, 22);
+            this.textBox1.Size = new System.Drawing.Size(720, 38);
             this.textBox1.TabIndex = 1;
             // 
             // cnclMod
             // 
-            this.cnclMod.Location = new System.Drawing.Point(332, 117);
+            this.cnclMod.Location = new System.Drawing.Point(664, 227);
+            this.cnclMod.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cnclMod.Name = "cnclMod";
-            this.cnclMod.Size = new System.Drawing.Size(86, 31);
+            this.cnclMod.Size = new System.Drawing.Size(172, 60);
             this.cnclMod.TabIndex = 2;
             this.cnclMod.Text = "Cancel";
             this.cnclMod.UseVisualStyleBackColor = true;
@@ -62,9 +65,10 @@
             // 
             // mdfy
             // 
-            this.mdfy.Location = new System.Drawing.Point(448, 117);
+            this.mdfy.Location = new System.Drawing.Point(896, 227);
+            this.mdfy.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.mdfy.Name = "mdfy";
-            this.mdfy.Size = new System.Drawing.Size(86, 31);
+            this.mdfy.Size = new System.Drawing.Size(172, 60);
             this.mdfy.TabIndex = 3;
             this.mdfy.Text = "Modify";
             this.mdfy.UseVisualStyleBackColor = true;
@@ -72,13 +76,14 @@
             // 
             // Modify_Project
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 215);
+            this.ClientSize = new System.Drawing.Size(1322, 417);
             this.Controls.Add(this.mdfy);
             this.Controls.Add(this.cnclMod);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.modPName);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Modify_Project";
             this.Text = "Modify Project";
             this.Load += new System.EventHandler(this.Modify_Project_Load);
@@ -90,8 +95,8 @@
         #endregion
 
         private System.Windows.Forms.Label modPName;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button cnclMod;
         private System.Windows.Forms.Button mdfy;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

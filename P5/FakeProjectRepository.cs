@@ -114,9 +114,42 @@ namespace P5
 
         public string Modify(int projectID, Project project)
         {
-            string a = string.Empty;
-            return a;
+            bool exists = false;
+            Project projectToModify = new Project();
+            //Select project by id; set exists flag to true
+            foreach (Project existingProject in projects)
+            {
+                if (existingProject.Id == projectID)
+                {
+                    exists = true;
+                    projectToModify = existingProject;
+                }
+            }
 
+            //check if id exists
+            if (!exists)
+                return NO_PROJECT_FOUND_ERROR;
+
+            // check for duplicate name
+            bool dup = false;
+            foreach(Project existingProject in projects)
+            {
+                if (existingProject.Name == project.Name)
+                {
+                    dup = true;
+                    projectToModify = existingProject;
+                }
+            }
+
+            if (dup)
+                return DUPLPICATE_PROJECT_NAME_ERROR;
+
+            if (project.Name == "")
+                return EMPTY_PROJECT_NAME_ERROR;
+
+            projectToModify.Name = project.Name;
+
+            return NO_ERROR;
         }
 
         public List<Project> GetAll()

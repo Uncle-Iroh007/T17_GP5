@@ -55,7 +55,7 @@ namespace P5
             //If the project is the same as the current, give error in message box
             else
             {
-                MessageBox.Show("Cannot modify your current session project.", "Attention");
+                MessageBox.Show("Cannot remove your current session project.", "Attention");
                 this.Close();
             }
         }

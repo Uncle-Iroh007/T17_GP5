@@ -86,7 +86,28 @@ namespace P4_Code
 
         private void mdfy_project_Click(object sender, EventArgs e)
         {
-            //cyber cyber cyber cyber hexagon
+            //Select a project to be modified from project repo
+            Project projectToModify = new Project();
+            SelProject selectProject = new SelProject();
+            while (selectProject.isSelected == false && selectProject.ShowDialog(this) == DialogResult.OK)
+            {
+                projectRepository = selectProject.NewRepository;
+                projectToModify = selectProject.SelectedProject;
+            }
+
+            if (selectProject.DialogResult != DialogResult.OK)
+            {
+                Close();
+            }
+            //Open modify project window, where user modifies project.
+            else
+            {
+                Modify_Project modifyProject = new Modify_Project(projectRepository, currentProject, projectToModify);
+                while (modifyProject.isModified == false && modifyProject.ShowDialog(this) == DialogResult.OK)
+                {
+                    projectRepository = modifyProject.ProjectRepository;
+                }
+            }
         }
 
         private void rmv_project_Click(object sender, EventArgs e)

@@ -40,7 +40,7 @@ namespace P4_Code
             }
             else
             {
-                MessageBox.Show("Incorrect UserName of Password.", "Attention");
+                MessageBox.Show("Incorrect UserName or Password.", "Attention");
             }
 
         }
