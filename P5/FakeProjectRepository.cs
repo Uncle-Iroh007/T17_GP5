@@ -114,6 +114,9 @@ namespace P5
 
         public string Modify(int projectID, Project project)
         {
+            if (projectID != project.Id)
+                return "Can not modify the project id.";
+
             bool exists = false;
             Project projectToModify = new Project();
             //Select project by id; set exists flag to true
