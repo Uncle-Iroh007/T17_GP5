@@ -39,6 +39,7 @@ namespace P5
             string newName = textBox1.Text;
             // remove extra whitespace
             newName.Trim();
+            updatedProject.Id = projectToModify.Id;
             updatedProject.Name = newName;
             //Check if current project
             if (currentProject != projectToModify)
