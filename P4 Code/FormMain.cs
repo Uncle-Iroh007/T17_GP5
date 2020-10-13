@@ -50,6 +50,7 @@ namespace P4_Code
                 }
                 if (selectProject.DialogResult != DialogResult.OK)
                 {
+                    MessageBox.Show("No project selected. Closing application.", "Attention");
                     Close();
                 }
 
@@ -70,8 +71,13 @@ namespace P4_Code
                 currentProject = selectProject.SelectedProject;
                 preferenceRepository.SetPreference(user.UserName, currentProject.Name, currentProject.Id.ToString());
             }
-            //Updating title
-            Text =  "Main - " + currentProject.Name;
+            if (selectProject.DialogResult != DialogResult.OK)
+            {
+                MessageBox.Show("No project selected.", "Attention");
+            }
+            else
+                //Updating title
+                Text =  "Main - " + currentProject.Name;
         }
 
         private void crt_project_Click(object sender, EventArgs e)
@@ -81,6 +87,10 @@ namespace P4_Code
             while (createProject.isCreated == false && createProject.ShowDialog(this) == DialogResult.OK)
             {
                 projectRepository = createProject.ProjectRepository;
+            }
+            if (createProject.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show("Project succesfully created.", "Attention");
             }
         }
 
@@ -97,7 +107,7 @@ namespace P4_Code
 
             if (selectProject.DialogResult != DialogResult.OK)
             {
-                Close();
+                MessageBox.Show("No project selected for modification.", "Attention");
             }
             //Open modify project window, where user modifies project.
             else
@@ -106,6 +116,10 @@ namespace P4_Code
                 while (modifyProject.isModified == false && modifyProject.ShowDialog(this) == DialogResult.OK)
                 {
                     projectRepository = modifyProject.ProjectRepository;
+                }
+                if (modifyProject.DialogResult == DialogResult.OK)
+                {
+                    MessageBox.Show("Project " + projectToModify.Id + " - " + projectToModify.Name + " succesfully modified.", "Attention");
                 }
             }
         }
@@ -123,7 +137,7 @@ namespace P4_Code
 
             if (selectProject.DialogResult != DialogResult.OK)
             {
-                Close();
+                MessageBox.Show("No project selected for removal.", "Attention");
             }
             //Open remove project window, where user confirms project to remove.
             else
@@ -132,6 +146,10 @@ namespace P4_Code
                 while (removeProject.isRemoved == false && removeProject.ShowDialog(this) == DialogResult.OK)
                 {
                     projectRepository = removeProject.ProjectRepository;
+                }
+                if(removeProject.DialogResult == DialogResult.OK)
+                {
+                    MessageBox.Show("Project " + projectToRemove.Id + " - " + projectToRemove.Name + " succesfully removed.", "Attention");
                 }
             }
         }
